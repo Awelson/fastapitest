@@ -1,11 +1,9 @@
-from typing import Optional
 import cv2
 import numpy as np
 
 from fastapi import FastAPI, UploadFile, File, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -15,14 +13,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 origins = [
     "http://127.0.0.1:8000",
 ]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.get("/")
 async def root():
